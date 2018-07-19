@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   addSuit(): void{
-    (<FormArray>this.superheroForm.get('suits')).push(this.generateSuit())
+    (<FormArray>this.superheroForm.get('suits')).push(this._generateSuit())
   }
 
   removeSuit(index: number): void{
@@ -36,11 +36,11 @@ export class AppComponent implements OnInit {
       'fname' : new FormControl(null, [Validators.required]),
       'lname' : new FormControl(null, [Validators.required]),
       'powerLevel': new FormControl(1000, [Validators.required]),
-      'suits' : new FormArray([ this.generateSuit() ])
+      'suits' : new FormArray([ this._generateSuit() ])
     })
   }
 
-  generateSuit(): FormGroup{
+  private _generateSuit(): FormGroup{
     return new FormGroup({
       'description' : new FormControl(null, Validators.required),
       'gloves' : new FormControl(true),
